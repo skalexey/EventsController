@@ -33,11 +33,11 @@ void EventsController::Log(const char* fmt, ...)
 
 void EventsController::unsubscribeFromEvent(Event event, void* subscriber)
 {
-    Log("%ld unsubscribe from event %u", subscriber, (unsigned)event);
+    Log("%p unsubscribe from event %u", subscriber, (unsigned)event);
     Subscriptions::iterator it = mSubscriptions.find(subscriber);
     if(it == mSubscriptions.end())
     {
-        Log("Warning! Not existing subscriber %ld try to unsubscribe from event %u", subscriber, (unsigned)event);
+        Log("Warning! Not existing subscriber %p try to unsubscribe from event %u", subscriber, (unsigned)event);
         return;
     }
     mSubscriptions.erase(it);
@@ -45,7 +45,7 @@ void EventsController::unsubscribeFromEvent(Event event, void* subscriber)
 
 void EventsController::subscribeToEvent(Event event, const EventCb& callback, void* subscriber)
 {
-    Log("%ld subscribe to event %u", subscriber, (unsigned)event);
+    Log("%p subscribe to event %u", subscriber, (unsigned)event);
     Subscriptions::iterator it = mSubscriptions.find(subscriber);
     if(it == mSubscriptions.end())
     {
