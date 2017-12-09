@@ -6,8 +6,9 @@
 //
 #include <stdio.h>
 #include "EventsController.h"
+#include "Utils.h"
 
-bool EventsController::mVerbose(true);
+bool EventsController::mVerbose(false);
 
 EventsController& EventsController::instance()
 {
@@ -22,13 +23,17 @@ EventsController::EventsController()
 
 void EventsController::Log(const char* fmt, ...)
 {
+    if(!mVerbose)
+    {
+        return;
+    }
     char buf[512];
     va_list args;
     va_start(args, fmt);
     vsnprintf(buf, 512, fmt, args);
     buf[511] = '\0';
+    Utils::Log("EventsController: %s\n", buf);
     va_end(args);
-    printf("EventsController: %s\n", buf);
 }
 
 void EventsController::unsubscribeFromEvent(Event event, void* subscriber)
