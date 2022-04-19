@@ -1,6 +1,5 @@
 //
 //  EventsController.cpp
-//  Cloud Raiders Debug
 //
 //  Created by skorokhodov on 11/9/17.
 //
